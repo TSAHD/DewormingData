@@ -197,20 +197,29 @@
 	</script>
 
 	<script>
-            const scriptURL = 
-            'https://script.google.com/macros/s/AKfycbwlLq-dd9eGPeVPrTxtU_QxbeGWPR1xJYkFcZLMoMAOi2k4T2iIcYLf-ZKScHEHsSm6Lg/exec'
-            const form = document.forms['google-sheet']
-          
-            form.addEventListener('submit', e => {
-             		 e.preventDefault()
-             		 fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-              				  .then(response => alert("Thanks for Contacting us..! Your Data is submitted..."))
-              				  .catch(error => console.error('Error!', error.message))
-					    e.target.reset();
-           				 })
-          </script>
+  const scriptURL = 'https://tsahd.github.io/DewormingData/';
+  const form = document.forms['google-sheet'];
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    fetch(scriptURL, { 
+      method: 'POST', 
+      body: new FormData(form),
+      mode: 'no-cors' // This bypasses the CORS error for simple submissions
+    })
+    .then(() => {
+      alert("Thanks for Contacting us..! Your Data is submitted...");
+      form.reset();
+      window.location.reload(); // Optional: refresh to show a clean state
+    })
+    .catch(error => console.error('Error!', error.message));
+  });
+</script>
+	
 
     </body>
 
 </html>
+
 
